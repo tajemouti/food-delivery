@@ -18,18 +18,18 @@
     animation: fadeIn 3s;
 }
 
-h2 {
+.header h2 {
     font-weight: 500;
     color: white;
     font-size: max(4.5vw, 22px);
 }
 
-.p {
+.header .p {
     color: white;
     font-size: 1vw;
 }
 
-button {
+.header button {
     border: none;
     color: #747474;
     font-weight: 500;
