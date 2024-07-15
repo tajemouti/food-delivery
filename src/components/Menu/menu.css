@@ -4,7 +4,7 @@
     gap: 20px;
 }
 
-h1 {
+.menu h1 {
     color: #262626;
     font-weight: 500;
 }
@@ -43,7 +43,7 @@ h1 {
     cursor: pointer;
 }
 
-hr {
+.menu hr {
     margin: 10px 0px;
     height: 2px;
     background-color: #e2e2e2;

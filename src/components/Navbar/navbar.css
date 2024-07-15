@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.logo {
+.navbar .logo {
   width: 150px;
 }
 
@@ -33,7 +33,7 @@
   transition: 0.3s;
 }
 
-button:hover {
+.navbar button:hover {
   background: #fff4f2;
 }
 
