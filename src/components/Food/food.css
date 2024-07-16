@@ -3,7 +3,7 @@
 }
 
 .food h2 {
-  font-size: 24px;
+  font-size: max(2vw, 24px);
   font-weight: 600;
 }
 
