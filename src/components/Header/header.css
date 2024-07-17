@@ -43,8 +43,8 @@
   .header-contents {
     max-width: 45%;
   }
- }
- 
+}
+
 @media (max-width: 750px) {
   .header-contents {
     max-width: 55%;
@@ -57,4 +57,4 @@
   .header-contents button {
     padding: 2vw 4vw;
   }
- }
+}
