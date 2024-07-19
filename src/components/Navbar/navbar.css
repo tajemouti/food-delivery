@@ -9,7 +9,7 @@
   top: 0;
   right: 0;
   left: 0;
-  box-shadow: 0px 0px 10px 0px;
+  box-shadow: 0 0 10px 0;
 }
 
 .navbar .logo {
