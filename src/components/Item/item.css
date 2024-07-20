@@ -49,12 +49,16 @@
 }
 
 .add {
-  width: 35px;
+  border: none;
+  border-radius: 50%;
+}
+
+.add img {
   position: absolute;
   bottom: 15px;
   right: 15px;
+  width: 35px;
   cursor: pointer;
-  border-radius: 50%;
 }
 
 .item-counter {
@@ -67,6 +71,11 @@
   padding: 6px;
   border-radius: 50px;
   background-color: white;
+}
+
+.item-counter button {
+  border: none;
+  border-radius: 50%;
 }
 
 .item-counter img {
