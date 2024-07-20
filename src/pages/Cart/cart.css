@@ -54,7 +54,7 @@
 .cart-total-details {
   display: flex;
   justify-content: space-between;
-  color: #555
+  color: #555;
 }
 
 .cart-total hr {
