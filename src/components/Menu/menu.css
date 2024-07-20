@@ -28,6 +28,11 @@
   display: none;
 }
 
+.menu-list-item {
+  border: none;
+  background: none;
+}
+
 .menu-list-item img {
   width: 7.5vw;
   min-width: 80px;
