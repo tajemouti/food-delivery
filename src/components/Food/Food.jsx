@@ -4,14 +4,14 @@ import './food.css';
 
 const Food = () => {
   const foodList = useSelector((state) => state.food);
-  const category = useSelector((state) => state.category);
+  const selectedCategory = useSelector((state) => state.category.selectedCategory);
 
   return (
     <div className="food" id="food">
       <h2>Top dishes near you</h2>
       <div className="food-list">
         {foodList.map((item) => {
-          if (category === 'All' || category === item.category) {
+          if (selectedCategory === 'All' || selectedCategory === item.category) {
             return (
               <Item
                 key={item.id}
