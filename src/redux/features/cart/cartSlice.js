@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { foodList } from '../../../assets/assets';
 
 const initialState = {};
 
@@ -35,8 +34,8 @@ export const getTotalCartAmount = (state) => {
   let total = 0;
 
   Object.entries(state.cart).forEach(([itemId, quantity]) => {
-    if (quantity > 0) {
-      const item = foodList.find((food) => food.id === itemId);
+    const item = state.food.foodList.find((food) => food.idMeal === itemId);
+    if (item) {
       total += item.price * quantity;
     }
   });
