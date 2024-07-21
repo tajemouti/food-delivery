@@ -2,13 +2,15 @@ import PropTypes from 'prop-types';
 import './navbar.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
 import { getTotalCartAmount } from '../../redux/features/cart/cartSlice';
+import { showLogin } from '../../redux/features/login/loginSlice';
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = () => {
   const [menu, setMenu] = useState('home');
   const totalAmount = useSelector(getTotalCartAmount);
+  const dispatch = useDispatch();
 
   return (
     <div className="navbar">
@@ -29,7 +31,7 @@ const Navbar = ({ setShowLogin }) => {
             <div className={!totalAmount ? '' : 'dot'} />
           </div>
         </Link>
-        <button type="button" onClick={() => setShowLogin(true)}>Sign in</button>
+        <button type="button" onClick={() => dispatch(showLogin())}>Sign in</button>
       </div>
     </div>
   );

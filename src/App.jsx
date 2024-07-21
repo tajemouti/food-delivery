@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
@@ -8,13 +8,13 @@ import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  const showLogin = useSelector((state) => state.login);
 
   return (
     <>
-      {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
+      {showLogin ? <Login /> : <></>}
       <div className="app">
-        <Navbar setShowLogin={setShowLogin} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />

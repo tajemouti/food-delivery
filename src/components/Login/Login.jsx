@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import './login.css';
+import { useDispatch } from 'react-redux';
 import { assets } from '../../assets/assets';
+import './login.css';
+import { hideLogin } from '../../redux/features/login/loginSlice';
 
-const Login = ({ setShowLogin }) => {
+const Login = () => {
   const [currentState, setCurrentState] = useState('Login');
+  const dispatch = useDispatch();
 
   return (
     <div className="login">
@@ -12,7 +15,7 @@ const Login = ({ setShowLogin }) => {
         <div className="login-title">
           <h2>{currentState}</h2>
           <button
-            onClick={() => setShowLogin(false)}
+            onClick={() => dispatch(hideLogin())}
             aria-label="Set Show Login"
             type="button"
           >
