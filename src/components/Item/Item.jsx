@@ -4,11 +4,18 @@ import { assets } from '../../assets/assets';
 import { addToCart, removeFromCart } from '../../redux/features/cart/cartSlice';
 import './item.css';
 
-const Item = ({
-  id, name, price, description, image,
-}) => {
+const Item = ({ id }) => {
+  const item = useSelector((state) => state.food.find((foodItem) => foodItem.id === id));
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  if (!item) {
+    return null;
+  }
+
+  const {
+    name, price, description, image,
+  } = item;
 
   const handleAddToCart = (itemId) => {
     dispatch(addToCart(itemId));
@@ -70,10 +77,6 @@ const Item = ({
 
 Item.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
 };
 
 export default Item;
