@@ -1,9 +1,9 @@
-import { useContext } from 'react';
 import './order.css';
-import { StoreContext } from '../../context/StoreContext';
+import { useSelector } from 'react-redux';
+import { getTotalCartAmount } from '../../redux/features/cart/cartSlice';
 
 const Order = () => {
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const totalAmount = useSelector(getTotalCartAmount);
 
   return (
     <form className="order">
@@ -33,21 +33,21 @@ const Order = () => {
               <p>Subtotal</p>
               <p>
                 $
-                {getTotalCartAmount()}
+                {totalAmount}
               </p>
             </div>
             <div className="cart-total-details">
               <p>Delivery Fee</p>
               <p>
                 $
-                {!getTotalCartAmount() ? '0' : '2'}
+                {!totalAmount ? '0' : '2'}
               </p>
             </div>
             <div className="cart-total-details">
               <b>Total</b>
               <b>
                 $
-                {getTotalCartAmount() * 2}
+                {totalAmount * 2}
               </b>
             </div>
           </div>

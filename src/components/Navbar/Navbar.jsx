@@ -1,13 +1,19 @@
-import PropTypes from 'prop-types';
-import './navbar.css';
-import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
-import { StoreContext } from '../../context/StoreContext';
+import { getTotalCartAmount } from '../../redux/features/cart/cartSlice';
+import { showLogin } from '../../redux/features/login/loginSlice';
+import { setMenu } from '../../redux/features/menu/menuSlice';
+import './navbar.css';
 
-const Navbar = ({ setShowLogin }) => {
-  const [menu, setMenu] = useState('home');
-  const { getTotalCartAmount } = useContext(StoreContext);
+const Navbar = () => {
+  const menu = useSelector((state) => state.menu);
+  const totalAmount = useSelector(getTotalCartAmount);
+  const dispatch = useDispatch();
+
+  const handleScrollUp = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="navbar">
@@ -15,27 +21,23 @@ const Navbar = ({ setShowLogin }) => {
         <img className="logo" src={assets.logo} alt="logo" />
       </Link>
       <ul className="navbar-menu">
-        <Link to="/" onClick={() => setMenu('home')} className={menu === 'home' ? 'active' : ''}>Home</Link>
-        <a href="/#menu" onClick={() => setMenu('menu')} className={menu === 'menu' ? 'active' : ''}>Menu</a>
-        <a href="/#get-app" onClick={() => setMenu('mobile-app')} className={menu === 'mobile-app' ? 'active' : ''}>Mobile App</a>
-        <a href="/#footer" onClick={() => setMenu('contact-us')} className={menu === 'contact-us' ? 'active' : ''}>Contact Us</a>
+        <Link to="/" onClick={() => dispatch(setMenu('home'))} className={menu === 'home' ? 'active' : ''}>Home</Link>
+        <a href="/#menu" onClick={() => dispatch(setMenu('menu'))} className={menu === 'menu' ? 'active' : ''}>Menu</a>
+        <a href="/#get-app" onClick={() => dispatch(setMenu('mobile-app'))} className={menu === 'mobile-app' ? 'active' : ''}>Mobile App</a>
+        <a href="#footer" onClick={() => dispatch(setMenu('contact-us'))} className={menu === 'contact-us' ? 'active' : ''}>Contact Us</a>
       </ul>
       <div className="navbar-right">
         <img src={assets.searchIcon} alt="search" />
-        <Link to="/cart">
+        <Link onClick={() => handleScrollUp()} to="/cart">
           <div className="navbar-search-icon">
             <img src={assets.basketIcon} alt="basket" />
-            <div className={!getTotalCartAmount() ? '' : 'dot'} />
+            <div className={!totalAmount ? '' : 'dot'} />
           </div>
         </Link>
-        <button type="button" onClick={() => setShowLogin(true)}>Sign in</button>
+        <button type="button" onClick={() => dispatch(showLogin())}>Sign in</button>
       </div>
     </div>
   );
-};
-
-Navbar.propTypes = {
-  setShowLogin: PropTypes.func.isRequired,
 };
 
 export default Navbar;

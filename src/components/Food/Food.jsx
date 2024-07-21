@@ -1,11 +1,10 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
-import './food.css';
-import { StoreContext } from '../../context/StoreContext';
+import { useSelector } from 'react-redux';
 import Item from '../Item/Item';
+import './food.css';
 
-const Food = ({ category }) => {
-  const { foodList } = useContext(StoreContext);
+const Food = () => {
+  const foodList = useSelector((state) => state.food);
+  const category = useSelector((state) => state.category);
 
   return (
     <div className="food" id="food">
@@ -17,23 +16,14 @@ const Food = ({ category }) => {
               <Item
                 key={item.id}
                 id={item.id}
-                name={item.name}
-                description={item.description}
-                price={item.price}
-                image={item.image}
               />
             );
           }
-
           return null;
         })}
       </div>
     </div>
   );
-};
-
-Food.propTypes = {
-  category: PropTypes.string.isRequired,
 };
 
 export default Food;

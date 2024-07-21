@@ -35,6 +35,7 @@
   border: none;
   padding: 5px;
   color: tomato;
+  cursor: pointer;
 }
 
 .login-title img {

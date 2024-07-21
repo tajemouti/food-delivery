@@ -1,13 +1,29 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
-import { StoreContext } from '../../context/StoreContext';
+import { addToCart, removeFromCart } from '../../redux/features/cart/cartSlice';
 import './item.css';
 
-const Item = ({
-  id, name, price, description, image,
-}) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+const Item = ({ id }) => {
+  const item = useSelector((state) => state.food.find((foodItem) => foodItem.id === id));
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  if (!item) {
+    return null;
+  }
+
+  const {
+    name, price, description, image,
+  } = item;
+
+  const handleAddToCart = (itemId) => {
+    dispatch(addToCart(itemId));
+  };
+
+  const handleRemoveFromCart = (itemId) => {
+    dispatch(removeFromCart(itemId));
+  };
 
   return (
     <div className="item">
@@ -16,7 +32,7 @@ const Item = ({
         {!cartItems[id] ? (
           <button
             className="add"
-            onClick={() => addToCart(id)}
+            onClick={() => handleAddToCart(id)}
             aria-label="Add to cart"
             type="button"
           >
@@ -25,7 +41,7 @@ const Item = ({
         ) : (
           <div className="item-counter">
             <button
-              onClick={() => removeFromCart(id)}
+              onClick={() => handleRemoveFromCart(id)}
               aria-label="Remove from cart"
               type="button"
             >
@@ -33,7 +49,7 @@ const Item = ({
             </button>
             <p>{cartItems[id]}</p>
             <button
-              onClick={() => addToCart(id)}
+              onClick={() => handleAddToCart(id)}
               aria-label="Add more to cart"
               type="button"
             >
@@ -61,10 +77,6 @@ const Item = ({
 
 Item.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
 };
 
 export default Item;
