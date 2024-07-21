@@ -1,11 +1,10 @@
-import './navbar.css';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
 import { getTotalCartAmount } from '../../redux/features/cart/cartSlice';
 import { showLogin } from '../../redux/features/login/loginSlice';
 import { setMenu } from '../../redux/features/menu/menuSlice';
+import './navbar.css';
 
 const Navbar = () => {
   const menu = useSelector((state) => state.menu);

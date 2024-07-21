@@ -17,10 +17,4 @@ const store = configureStore({
   },
 });
 
-console.log('Current State:', store.getState());
-
-store.subscribe(() => {
-  console.log('Updated State:', store.getState());
-});
-
 export default store;
