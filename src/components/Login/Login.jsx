@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
 import './login.css';
 import { hideLogin } from '../../redux/features/login/loginSlice';
+import { setLogin, setSignUp } from '../../redux/features/login/loginStateSlice';
 
 const Login = () => {
-  const [currentState, setCurrentState] = useState('Login');
+  const currentState = useSelector((state) => state.loginState);
   const dispatch = useDispatch();
 
   return (
@@ -38,22 +37,18 @@ const Login = () => {
           ? (
             <p>
               Create a new account?
-              <button type="button" onClick={() => setCurrentState('Sign Up')}>Click here</button>
+              <button type="button" onClick={() => dispatch(setSignUp())}>Click here</button>
             </p>
           )
           : (
             <p>
               Already have an account?
-              <button type="button" onClick={() => setCurrentState('Login')}>Login here</button>
+              <button type="button" onClick={() => dispatch(setLogin())}>Login here</button>
             </p>
           )}
       </form>
     </div>
   );
-};
-
-Login.propTypes = {
-  setShowLogin: PropTypes.func.isRequired,
 };
 
 export default Login;

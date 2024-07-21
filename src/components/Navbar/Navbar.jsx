@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import './navbar.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -35,10 +34,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
-
-Navbar.propTypes = {
-  setShowLogin: PropTypes.func.isRequired,
 };
 
 export default Navbar;
