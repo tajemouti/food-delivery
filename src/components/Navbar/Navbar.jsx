@@ -11,6 +11,10 @@ const Navbar = () => {
   const totalAmount = useSelector(getTotalCartAmount);
   const dispatch = useDispatch();
 
+  const handleScrollUp = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="navbar">
       <Link to="/">
@@ -24,7 +28,7 @@ const Navbar = () => {
       </ul>
       <div className="navbar-right">
         <img src={assets.searchIcon} alt="search" />
-        <Link to="/cart">
+        <Link onClick={() => handleScrollUp()} to="/cart">
           <div className="navbar-search-icon">
             <img src={assets.basketIcon} alt="basket" />
             <div className={!totalAmount ? '' : 'dot'} />
