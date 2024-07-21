@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
-import './item.css';
 import { addToCart, removeFromCart } from '../../redux/features/cart/cartSlice';
+import './item.css';
 
 const Item = ({
   id, name, price, description, image,
