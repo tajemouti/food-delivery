@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import './navbar.css';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { assets } from '../../assets/assets';
-import { StoreContext } from '../../context/StoreContext';
+import { getTotalCartAmount } from '../../redux/features/cart/cartSlice';
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState('home');
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const totalAmount = useSelector(getTotalCartAmount);
 
   return (
     <div className="navbar">
@@ -25,7 +26,7 @@ const Navbar = ({ setShowLogin }) => {
         <Link to="/cart">
           <div className="navbar-search-icon">
             <img src={assets.basketIcon} alt="basket" />
-            <div className={!getTotalCartAmount() ? '' : 'dot'} />
+            <div className={!totalAmount ? '' : 'dot'} />
           </div>
         </Link>
         <button type="button" onClick={() => setShowLogin(true)}>Sign in</button>

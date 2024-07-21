@@ -1,12 +1,13 @@
-import { useContext } from 'react';
 import './cart.css';
 import { useNavigate } from 'react-router-dom';
-import { StoreContext } from '../../context/StoreContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { foodList } from '../../assets/assets';
+import { addToCart, getTotalCartAmount, removeFromCart } from '../../redux/features/cart/cartSlice';
 
 const Cart = () => {
-  const {
-    cartItems, foodList, addToCart, removeFromCart, getTotalCartAmount,
-  } = useContext(StoreContext);
+  const cartItems = useSelector((state) => state.cart);
+  const totalAmount = useSelector(getTotalCartAmount);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
@@ -39,8 +40,8 @@ const Cart = () => {
                     {item.price * cartItems[item.id]}
                   </p>
                   <div className="add-remove">
-                    <button type="button" className="cross" onClick={() => addToCart(item.id)}>+</button>
-                    <button type="button" className="cross" onClick={() => removeFromCart(item.id)}>-</button>
+                    <button type="button" className="cross" onClick={() => dispatch(addToCart(item.id))}>+</button>
+                    <button type="button" className="cross" onClick={() => dispatch(removeFromCart(item.id))}>-</button>
                   </div>
                 </div>
                 <hr />
@@ -59,26 +60,26 @@ const Cart = () => {
               <p>Subtotal</p>
               <p>
                 $
-                {getTotalCartAmount()}
+                {totalAmount}
               </p>
             </div>
             <div className="cart-total-details">
               <p>Delivery Fee</p>
               <p>
                 $
-                {!getTotalCartAmount() ? '0' : '2'}
+                {!totalAmount ? '0' : '2'}
               </p>
             </div>
             <div className="cart-total-details">
               <b>Total</b>
               <b>
                 $
-                {getTotalCartAmount() * 2}
+                {totalAmount * 2}
               </b>
             </div>
           </div>
           <button
-            onClick={() => { if (!getTotalCartAmount()) { navigate('/order'); } }}
+            onClick={() => { if (totalAmount) { navigate('/order'); } }}
             type="button"
           >
             Proceed to checkout
