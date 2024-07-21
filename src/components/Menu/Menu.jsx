@@ -5,7 +5,9 @@ import './menu.css';
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const { categories, selectedCategory, status, error } = useSelector((state) => state.category);
+  const {
+    categories, selectedCategory, status, error,
+  } = useSelector((state) => state.category);
 
   useEffect(() => {
     if (status === 'idle') {

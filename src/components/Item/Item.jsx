@@ -5,7 +5,7 @@ import { addToCart, removeFromCart } from '../../redux/features/cart/cartSlice';
 import './item.css';
 
 const Item = ({ id }) => {
-  const item = useSelector((state) => state.food.find((foodItem) => foodItem.id === id));
+  const item = useSelector((state) => state.food.foodList.find((meal) => meal.idMeal === id));
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -14,7 +14,9 @@ const Item = ({ id }) => {
   }
 
   const {
-    name, price, description, image,
+    strMeal: name,
+    strMealThumb: image,
+    price,
   } = item;
 
   const handleAddToCart = (itemId) => {
@@ -60,12 +62,12 @@ const Item = ({ id }) => {
       </div>
       <div className="item-info">
         <div className="item-name-rating">
-          <p>{name}</p>
+          <p className="item-name" title={name}>
+            {name.slice(0, 10)}
+            {name.length > 10 && '...'}
+          </p>
           <img src={assets.ratingStarts} alt="rating" />
         </div>
-        <p className="item-description">
-          {description}
-        </p>
         <p className="item-price">
           $
           {price}
