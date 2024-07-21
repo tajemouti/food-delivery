@@ -1,12 +1,12 @@
 import './cart.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { foodList } from '../../assets/assets';
 import { addToCart, getTotalCartAmount, removeFromCart } from '../../redux/features/cart/cartSlice';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
   const totalAmount = useSelector(getTotalCartAmount);
+  const foodList = useSelector((state) => state.food.foodList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,24 +24,24 @@ const Cart = () => {
         <br />
         <hr />
         {foodList.map((item) => {
-          if (cartItems[item.id] > 0) {
+          if (cartItems[item.idMeal] > 0) {
             return (
-              <div key={item.id}>
+              <div key={item.idMeal}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="food" />
-                  <p>{item.name}</p>
+                  <img src={item.strMealThumb} alt="food" />
+                  <p>{item.strMeal}</p>
                   <p>
                     $
                     {item.price}
                   </p>
-                  <p>{cartItems[item.id]}</p>
+                  <p>{cartItems[item.idMeal]}</p>
                   <p>
                     $
-                    {item.price * cartItems[item.id]}
+                    {item.price * cartItems[item.idMeal]}
                   </p>
                   <div className="add-remove">
-                    <button type="button" className="cross" onClick={() => dispatch(addToCart(item.id))}>+</button>
-                    <button type="button" className="cross" onClick={() => dispatch(removeFromCart(item.id))}>-</button>
+                    <button type="button" className="cross" onClick={() => dispatch(addToCart(item.idMeal))}>+</button>
+                    <button type="button" className="cross" onClick={() => dispatch(removeFromCart(item.idMeal))}>-</button>
                   </div>
                 </div>
                 <hr />
@@ -74,7 +74,7 @@ const Cart = () => {
               <b>Total</b>
               <b>
                 $
-                {totalAmount * 2}
+                {totalAmount ? totalAmount + 2 : '0'}
               </b>
             </div>
           </div>
