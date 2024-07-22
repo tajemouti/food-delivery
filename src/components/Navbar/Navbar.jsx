@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className={!totalAmount ? '' : 'dot'} />
           </div>
         </Link>
-        <button type="button" onClick={() => dispatch(showLogin())}>Sign in</button>
+        <button type="button" onClick={() => { dispatch(showLogin()); handleScrollUp(); }}>Sign in</button>
       </div>
     </div>
   );
