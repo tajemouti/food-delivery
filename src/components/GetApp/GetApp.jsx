@@ -1,4 +1,4 @@
-import { assets } from '../../assets/assets';
+import assets from '../../assets/assets';
 import './get_app.css';
 
 const GetApp = () => (

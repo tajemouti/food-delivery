@@ -37,7 +37,7 @@ const Cart = () => {
                   <p>{cartItems[item.idMeal]}</p>
                   <p>
                     $
-                    {item.price * cartItems[item.idMeal]}
+                    {(item.price * cartItems[item.idMeal]).toFixed(2)}
                   </p>
                   <div className="add-remove">
                     <button type="button" className="cross" onClick={() => dispatch(addToCart(item.idMeal))}>+</button>
@@ -60,7 +60,7 @@ const Cart = () => {
               <p>Subtotal</p>
               <p>
                 $
-                {totalAmount}
+                {totalAmount.toFixed(2)}
               </p>
             </div>
             <div className="cart-total-details">
@@ -74,7 +74,7 @@ const Cart = () => {
               <b>Total</b>
               <b>
                 $
-                {totalAmount ? totalAmount + 2 : '0'}
+                {totalAmount ? (totalAmount + 2).toFixed(2) : '0'}
               </b>
             </div>
           </div>

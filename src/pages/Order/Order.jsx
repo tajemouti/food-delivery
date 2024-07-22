@@ -47,7 +47,7 @@ const Order = () => {
               <b>Total</b>
               <b>
                 $
-                {totalAmount * 2}
+                {totalAmount + 2}
               </b>
             </div>
           </div>

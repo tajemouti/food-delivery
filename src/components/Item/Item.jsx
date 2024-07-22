@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { assets } from '../../assets/assets';
+import assets from '../../assets/assets';
 import { addToCart, removeFromCart } from '../../redux/features/cart/cartSlice';
 import './item.css';
 
