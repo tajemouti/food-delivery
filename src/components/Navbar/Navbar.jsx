@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { assets } from '../../assets/assets';
+import assets from '../../assets/assets';
 import { getTotalCartAmount } from '../../redux/features/cart/cartSlice';
 import { showLogin } from '../../redux/features/login/loginSlice';
 import { setMenu } from '../../redux/features/menu/menuSlice';
@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className={!totalAmount ? '' : 'dot'} />
           </div>
         </Link>
-        <button type="button" onClick={() => dispatch(showLogin())}>Sign in</button>
+        <button type="button" onClick={() => { dispatch(showLogin()); handleScrollUp(); }}>Sign in</button>
       </div>
     </div>
   );

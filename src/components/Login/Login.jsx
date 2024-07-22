@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { assets } from '../../assets/assets';
+import assets from '../../assets/assets';
 import './login.css';
 import { hideLogin } from '../../redux/features/login/loginSlice';
 import { setLogin, setSignUp } from '../../redux/features/login/loginStateSlice';
